@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B921FF15-EE58-4815-A551-4233B588055E}</ProjectGuid>
+    <ProjectGuid>{4DC24CFE-0E79-4D05-B669-E47802470857}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MangachanParser</RootNamespace>
-    <AssemblyName>MangachanParser</AssemblyName>
+    <RootNamespace>MangaReader.Interfaces</RootNamespace>
+    <AssemblyName>MangaReader.Interfaces</AssemblyName>
     <DefaultLanguage>ru-RU</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -107,22 +107,17 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parser\CatalogParser.cs" />
-    <Compile Include="Parser\ContentParser.cs" />
-    <Compile Include="Parser\InfoParser.cs" />
+    <Compile Include="Entity\ICatalogTile.cs" />
+    <Compile Include="Entity\IChapter.cs" />
+    <Compile Include="Entity\IContent.cs" />
+    <Compile Include="Entity\IInfoBase.cs" />
+    <Compile Include="Entity\IMangaInfo.cs" />
+    <Compile Include="Entity\ITag.cs" />
+    <Compile Include="Parsers\ICatalogParser.cs" />
+    <Compile Include="Parsers\IContentParser.cs" />
+    <Compile Include="Parsers\IInfoParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\MangachanParser.rd.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="WebP for the UWP, Version=1.0">
-      <Name>WebP for the UWP</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MangaReader.Interfaces\MangaReader.Interfaces.csproj">
-      <Project>{4dc24cfe-0e79-4d05-b669-e47802470857}</Project>
-      <Name>MangaReader.Interfaces</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Properties\MangaReader.Interfaces.rd.xml" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -7,11 +7,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
-using MangachanParser.Interfaces;
+using MangaReader.Interfaces.Entity;
+using MangaReader.Interfaces.Parsers;
 
 namespace MangachanParser.Parser
 {
-    class CatalogParser<T> where T : ICatalogTile, new()
+    class CatalogParser<T> : ICatalogParser where T : ICatalogTile, new()
     {
         private const string CATALOG_URL = @"http://mangachan.ru/mostfavorites";
         private const string SITE_URL = @"http://mangachan.ru";

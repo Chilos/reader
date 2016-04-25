@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Media;
 
-namespace MangachanParser.Interfaces
+namespace MangaReader.Interfaces.Entity
 {
     public interface IINfoBase
     {

@@ -2,11 +2,12 @@
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using MangachanParser.Interfaces;
+using MangaReader.Interfaces.Entity;
+using MangaReader.Interfaces.Parsers;
 
 namespace MangachanParser.Parser
 {
-    class InfoParser<I,T,C> 
+    class InfoParser<I,T,C> : IInfoParser
         where I : IMangaInfo, new() 
         where T: ITag, new() 
         where C: IChapter, new()                       

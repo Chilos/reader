@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Media.Imaging;
 
-namespace MangachanParser.Interfaces
+namespace MangaReader.Interfaces.Entity
 {
     public interface IContent
     {
