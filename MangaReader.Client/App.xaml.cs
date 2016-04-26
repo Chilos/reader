@@ -42,14 +42,12 @@ namespace MangaReader.Client
         /// <param name="e">Сведения о запросе и обработке запуска.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Не повторяйте инициализацию приложения, если в окне уже имеется содержимое,
@@ -70,15 +68,18 @@ namespace MangaReader.Client
                 Window.Current.Content = rootFrame;
             }
 
-            if (rootFrame.Content == null)
+            if (e.PrelaunchActivated == false)
             {
-                // Если стек навигации не восстанавливается для перехода к первой странице,
-                // настройка новой страницы путем передачи необходимой информации в качестве параметра
-                // параметр
-                rootFrame.Navigate(typeof(UI.View.MainPage), e.Arguments);
+                if (rootFrame.Content == null)
+                {
+                    // Если стек навигации не восстанавливается для перехода к первой странице,
+                    // настройка новой страницы путем передачи необходимой информации в качестве параметра
+                    // параметр
+                    rootFrame.Navigate(typeof(View.MainPageView), e.Arguments);
+                }
+                // Обеспечение активности текущего окна
+                Window.Current.Activate();
             }
-            // Обеспечение активности текущего окна
-            Window.Current.Activate();
         }
 
         /// <summary>

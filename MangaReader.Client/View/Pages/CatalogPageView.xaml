@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="MangaReader.Client.View.Pages.CatalogPageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:converters="using:MangaReader.Client.Converters"
+    xmlns:controls="using:MangaReader.Client.Controls"
+    mc:Ignorable="d">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding OnLoadCommand}"/>
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+    <Grid Background="#feeed7">
+        <Grid.Resources>
+            <converter:ParallaxConverter x:Key="Parallax"/>
+            <converters:VisibleConverter x:Key="Visible"/>
+        </Grid.Resources>
+        <Image Source="/Assets/japan-s-anime-i-manga2.jpg" 
+               HorizontalAlignment="Left"
+               Opacity="0.7"
+               VerticalAlignment="Top"
+               Stretch="UniformToFill"
+               Height="1500"
+               Margin="0,0,0,-780">
+            <Image.RenderTransform>
+                <CompositeTransform
+                    TranslateY="{Binding ElementName=MainScrollViewer, Path=VerticalOffset, Converter={StaticResource Parallax}, ConverterParameter=-0.10}" />
+            </Image.RenderTransform>
+        </Image>
+        <ScrollViewer x:Name="MainScrollViewer" VerticalScrollMode="Enabled" HorizontalScrollBarVisibility="Disabled">
+            <ListView ItemsSource="{Binding Tiles, Mode=TwoWay}"
+                  x:Name="ListView"
+                  SelectionMode="None">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CatalogTileControl Margin="5" 
+                                          Height="300"
+                                          Command="{Binding DataContext.ShowMangaInfo, ElementName=ListView}"
+                                          CommandParameter="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </ScrollViewer>
+        <Grid Visibility="{Binding ProcessingRingVisible, Converter={StaticResource Visible}}">
+            <Grid Background="Black"
+                  Opacity=".5"/>
+            <ProgressRing HorizontalAlignment="Center"
+                          VerticalAlignment="Center" 
+                          Width="100"
+                          Height="100"
+                          IsActive="True"
+                          Visibility="Visible"/>
+        </Grid>
+    </Grid>
+</Page>

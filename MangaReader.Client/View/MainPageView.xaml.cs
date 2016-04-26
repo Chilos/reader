@@ -2,14 +2,14 @@
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace MangaReader.Client.UI.View
+namespace MangaReader.Client.View
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPageView : Page
     {
-        public MainPage()
+        public MainPageView()
         {
             this.InitializeComponent();
         }
