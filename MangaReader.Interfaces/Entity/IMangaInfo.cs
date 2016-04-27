@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace MangachanParser.Interfaces
+namespace MangaReader.Interfaces.Entity
 {
     public interface IMangaInfo : IINfoBase
     {

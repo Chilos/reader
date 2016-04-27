@@ -1,13 +1,12 @@
 ﻿<Page
-    x:Class="MangaReader.Client.UI.View.MainPage"
+    x:Class="MangaReader.Client.View.MainPageView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MangaReader.Client"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:converter="using:MangaReader.Client"
+    xmlns:converters="using:MangaReader.Client.Converters"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -23,7 +22,7 @@
     </interactivity:Interaction.Behaviors>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.Resources>
-            <converter:VisibleConverter x:Key="VisibleConverter"/>
+            <converters:VisibleConverter x:Key="VisibleConverter"/>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

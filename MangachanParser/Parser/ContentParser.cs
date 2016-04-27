@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
-using MangachanParser.Interfaces;
+using MangaReader.Interfaces.Entity;
+using MangaReader.Interfaces.Parsers;
 using Universal.WebP;
 
 namespace MangachanParser.Parser
 {
-    class ContentParser<T> where T : IContent, new()
+    class ContentParser<T> : IContentParser where T : IContent, new()
     {
         private const string SITE_URL = @"http://mangachan.ru";
         private readonly string _mangaImageUrl;
