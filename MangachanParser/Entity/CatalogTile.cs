@@ -9,7 +9,7 @@ using MangaReader.Interfaces.Entity;
 
 namespace MangachanParser.Entity
 {
-    class CatalogTile : ICatalogTile
+    public class CatalogTile : ICatalogTile
     {
         public ImageSource Image { get; set; }
         public string EnName { get; set; }

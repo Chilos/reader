@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
+using MangaReader.Client.ViewModel;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -12,6 +13,7 @@ namespace MangaReader.Client.View
         public MainPageView()
         {
             this.InitializeComponent();
+            DataContext = new ViewModelLocator(CurrentFrame).MainPage;
         }
     }
 }

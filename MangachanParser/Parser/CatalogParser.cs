@@ -12,7 +12,7 @@ using MangaReader.Interfaces.Parsers;
 
 namespace MangachanParser.Parser
 {
-    class CatalogParser<T> : ICatalogParser where T : ICatalogTile, new()
+    public class CatalogParser<T> : ICatalogParser where T : ICatalogTile, new()
     {
         private const string CATALOG_URL = @"http://mangachan.ru/mostfavorites";
         private const string SITE_URL = @"http://mangachan.ru";

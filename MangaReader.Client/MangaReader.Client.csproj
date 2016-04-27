@@ -101,7 +101,13 @@
     <Compile Include="Controls\CatalogTileControl.xaml.cs">
       <DependentUpon>CatalogTileControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ParallaxConverter.cs" />
     <Compile Include="Converters\VisibleConverter.cs" />
+    <Compile Include="Navigate\INavigationService.cs" />
+    <Compile Include="Navigate\NavigationService.cs" />
+    <Compile Include="ViewModel\CatalogPageViewModel.cs" />
+    <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
@@ -117,6 +123,7 @@
     <None Include="MangaReader.Client_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\japan-s-anime-i-manga2.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -149,10 +156,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\MangachanParser\MangachanParser.csproj">
+      <Project>{b921ff15-ee58-4815-a551-4233b588055e}</Project>
+      <Name>MangachanParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MangaReader.Interfaces\MangaReader.Interfaces.csproj">
       <Project>{4dc24cfe-0e79-4d05-b669-e47802470857}</Project>
       <Name>MangaReader.Interfaces</Name>
