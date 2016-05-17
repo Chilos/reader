@@ -11,6 +11,7 @@ using MangaReader.Client.Navigate;
 using MangaReader.Interfaces.Entity;
 using MangachanParser.Entity;
 using MangachanParser.Parser;
+using MangaReader.Client.View.Pages;
 
 namespace MangaReader.Client.ViewModel
 {
@@ -68,7 +69,7 @@ namespace MangaReader.Client.ViewModel
             {
                 return _showMangaInfo ?? (_showMangaInfo = new RelayCommand<ICatalogTile>(o =>
                 {
-                    //_navigationService.Navigate(typeof(Page2), o);
+                    _navigationService.Navigate(typeof(AboutMangaPageView), o);
 
                 }));
             }

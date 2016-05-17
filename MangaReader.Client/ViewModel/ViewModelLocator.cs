@@ -16,7 +16,7 @@ namespace MangaReader.Client.ViewModel
 
         //public Page3ViewModel Page3 => SimpleIoc.Default.GetInstance<Page3ViewModel>();
         //public Page2ViewModel Page2 => SimpleIoc.Default.GetInstance<Page2ViewModel>();
-        //public Page1ViewModel Page1 => SimpleIoc.Default.GetInstance<Page1ViewModel>();
+        public AboutMangaPageViewModel AboutPage => SimpleIoc.Default.GetInstance<AboutMangaPageViewModel>();
         public CatalogPageViewModel CatalogPage => SimpleIoc.Default.GetInstance<CatalogPageViewModel>();
 
         public ViewModelLocator()
@@ -28,7 +28,7 @@ namespace MangaReader.Client.ViewModel
             SimpleIoc.Default.Register<MainPageViewModel>();
             //SimpleIoc.Default.Register<Page3ViewModel>();
             //SimpleIoc.Default.Register<Page2ViewModel>();
-            //SimpleIoc.Default.Register<Page1ViewModel>();
+            SimpleIoc.Default.Register<AboutMangaPageViewModel>();
             SimpleIoc.Default.Register<CatalogPageViewModel>();
         }
 
@@ -41,7 +41,7 @@ namespace MangaReader.Client.ViewModel
             SimpleIoc.Default.Register<MainPageViewModel>();
             //SimpleIoc.Default.Register<Page3ViewModel>();
             //SimpleIoc.Default.Register<Page2ViewModel>();
-            //SimpleIoc.Default.Register<Page1ViewModel>();
+            SimpleIoc.Default.Register<AboutMangaPageViewModel>();
             SimpleIoc.Default.Register<CatalogPageViewModel>();
         }
 

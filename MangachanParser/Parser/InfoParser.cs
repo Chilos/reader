@@ -7,7 +7,7 @@ using MangaReader.Interfaces.Parsers;
 
 namespace MangachanParser.Parser
 {
-    class InfoParser<I,T,C> : IInfoParser
+    public class InfoParser<I,T,C> : IInfoParser
         where I : IMangaInfo, new() 
         where T: ITag, new() 
         where C: IChapter, new()                       

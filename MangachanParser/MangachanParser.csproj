@@ -108,6 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\CatalogTile.cs" />
+    <Compile Include="Entity\Chapter.cs" />
+    <Compile Include="Entity\MangaInfo.cs" />
     <Compile Include="Entity\Tag.cs" />
     <Compile Include="Parser\CatalogParser.cs" />
     <Compile Include="Parser\ContentParser.cs" />

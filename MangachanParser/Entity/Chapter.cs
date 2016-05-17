@@ -7,9 +7,10 @@ using MangaReader.Interfaces.Entity;
 
 namespace MangachanParser.Entity
 {
-    public class Tag : ITag
+    public class Chapter : IChapter
     {
         public string Name { get; set; }
+        public string Date { get; set; }
         public string Url { get; set; }
     }
 }
