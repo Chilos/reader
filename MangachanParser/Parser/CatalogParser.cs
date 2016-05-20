@@ -16,11 +16,15 @@ namespace MangachanParser.Parser
     {
         private const string CATALOG_URL = @"http://mangachan.ru/mostfavorites";
         private const string SITE_URL = @"http://mangachan.ru";
-
-
-        public async void GetCatalogAsync(ObservableCollection<ICatalogTile> collection)
+        private readonly ParserHelper _helper;
+        public CatalogParser()
         {
-            var str = await GetHtmlPage();
+            _helper = new ParserHelper();
+        }
+
+        public async void GetCatalogAsync(ObservableCollection<ICatalogTile> collection, int offSet = 0)
+        {
+            var str = await _helper.GetHtmlPage(CATALOG_URL + $"?offset={offSet}");
             var list = ParseHtmlContent(str);
             foreach (var element in list)
             {
@@ -29,15 +33,15 @@ namespace MangachanParser.Parser
             }
         }
 
-        private async Task<string> GetHtmlPage()
+        private async Task<string> GetHtmlPage(int offSet = 0)
         {
-            return await new HttpClient().GetStringAsync(CATALOG_URL);
+            return await new HttpClient().GetStringAsync(CATALOG_URL+$"?offset={offSet}");
         }
 
         private List<string> ParseHtmlContent(string htmlPage)
         {
             var tilesList = new List<string>();
-            string patrn = "<div class=\"content_row\"(.*?)>(?<val>.*?)<div class=\"line_break\">";
+            string patrn = "<div(.*?)class=\"content_row\"(.*?)>(?<val>.*?)<div class=\"line_break\">";
             RegexOptions options = RegexOptions.Compiled | RegexOptions.Singleline;
             Regex r = new Regex(patrn, options);
             foreach (Match mat in r.Matches(htmlPage))
@@ -55,7 +59,7 @@ namespace MangachanParser.Parser
                 RusName = GetTileRusName(ParseTileBigName(htmlTile)),
                 IsEnded = IsEndedStatus(GetStatusesHtml(htmlTile)),
                 IsSingle = IsSingleStatus(GetStatusesHtml(htmlTile)),
-                ChapterCount = Convert.ToInt32(GetChapterCount(GetStatusesHtml(htmlTile))),
+                ChapterCount = GetChapterCount(GetStatusesHtml(htmlTile)),
                 Image = await GetImage(ParseImageUrl(htmlTile)),
                 UrlToInfo = ParseUrl(htmlTile)
             };
@@ -81,7 +85,7 @@ namespace MangachanParser.Parser
         private string ParseTileBigName(string htmlTile)
         {
             var tilesList = new List<string>();
-            var patrn = "class=\"title_link\">(?<val>.*?)</a>";
+            var patrn = "class=\"title_link\"(.*?)>(?<val>.*?)</a>";
             RegexOptions options = RegexOptions.Compiled | RegexOptions.Singleline;
             var r = new Regex(patrn, options);
             foreach (Match mat in r.Matches(htmlTile))
@@ -100,9 +104,10 @@ namespace MangachanParser.Parser
         }
         private string ParseImageUrl(string htmlTile)
         {
-            string patrn = "<img(\\W*)src=\"(.*?)\"";
+            string patrn = "<img style=(.*?)src=\"(.*?)\"";
             Regex r = new Regex(patrn, RegexOptions.Multiline);
-            return SITE_URL + r.Match(htmlTile).Groups[2].Value;
+            var url = r.Match(htmlTile).Groups[2].Value;
+            return url.Contains("http") ? url : SITE_URL + r.Match(htmlTile).Groups[2].Value;
         }
 
         private string ParseUrl(string htmlTile)

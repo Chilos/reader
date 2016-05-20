@@ -12,7 +12,7 @@ namespace MangaReader.Interfaces.Entity
         string Status { get; set; }
         ObservableCollection<ITag> Tags { get; set; }
         string UrlToInfo { get; set; }
-        int ChapterCount { get; set; }
+        string ChapterCount { get; set; }
         bool IsEnded { get; set; }
         bool IsSingle { get; set; }
     }

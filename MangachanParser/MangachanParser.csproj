@@ -114,6 +114,7 @@
     <Compile Include="Parser\CatalogParser.cs" />
     <Compile Include="Parser\ContentParser.cs" />
     <Compile Include="Parser\InfoParser.cs" />
+    <Compile Include="Parser\ParserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\MangachanParser.rd.xml" />
   </ItemGroup>

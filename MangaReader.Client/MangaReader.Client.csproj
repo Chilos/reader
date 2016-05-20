@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behavior\ScrollViewerBehavior.cs" />
     <Compile Include="Controls\CatalogTileControl.xaml.cs">
       <DependentUpon>CatalogTileControl.xaml</DependentUpon>
     </Compile>

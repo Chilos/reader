@@ -18,7 +18,7 @@ namespace MangachanParser.Entity
         public string Status { get; set; }
         public ObservableCollection<ITag> Tags { get; set; }
         public string UrlToInfo { get; set; }
-        public int ChapterCount { get; set; }
+        public string ChapterCount { get; set; }
         public bool IsEnded { get; set; }
         public bool IsSingle { get; set; }
     }

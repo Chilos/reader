@@ -18,17 +18,17 @@ namespace MangachanParser.Parser
     {
         private const string SITE_URL = @"http://mangachan.ru";
         private readonly string _mangaImageUrl;
-        private readonly WebView _wv;
+        private readonly ParserHelper _helper;
 
         public ContentParser(string mangaUrl)
         {
             _mangaImageUrl = SITE_URL + mangaUrl;
-            _wv = new WebView();
+            _helper = new ParserHelper();
         }
 
         public async void GetMangaImagesAsync(ObservableCollection<IContent> mangaImages)
         {
-            string previewPageHtml = await GetHtmlPage(_mangaImageUrl);
+            string previewPageHtml = await _helper.GetHtmlPage(_mangaImageUrl);
             int count = ParsePagesCount(previewPageHtml);
             for (int i = 0; i < count; i++)
             {
@@ -40,41 +40,10 @@ namespace MangachanParser.Parser
 
         private async Task<IContent> GetElement(string url, string pnamber)
         {
-            string previewPageHtmlPage = await GetHtmlPage(url);
+            string previewPageHtmlPage = await _helper.GetHtmlPage(url);
             string imageUrl = ParseImageUrl(previewPageHtmlPage);
             var img = await GetImageFromUrl(imageUrl);
             return new T() { Image = img, PageNamber = pnamber };
-        }
-
-        private async Task<string> GetHtmlPage(string mangaImageUrl)
-        {
-            _wv.Navigate(new Uri(mangaImageUrl));
-            var ss = await WaitForMessageSent();
-            if (ss.IsSuccess)
-            {
-                _content = await _wv.InvokeScriptAsync("eval",
-                    new[] { "document.documentElement.outerHTML;" });
-            }
-            return _content;
-        }
-
-
-        string _content;
-        async Task<WebViewNavigationCompletedEventArgs> WaitForMessageSent()
-        {
-            TypedEventHandler<WebView, WebViewNavigationCompletedEventArgs> h = null;
-            try
-            {
-                var tcs = new TaskCompletionSource<WebViewNavigationCompletedEventArgs>();
-                h = (o, args) => tcs.TrySetResult(args);
-                _wv.NavigationCompleted += h;
-                await Task.WhenAny(tcs.Task);
-                return await tcs.Task;
-            }
-            finally
-            {
-                _wv.NavigationCompleted -= h;
-            }
         }
 
         private int ParsePagesCount(string previewPageHtml)

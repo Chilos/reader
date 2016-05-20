@@ -10,6 +10,6 @@ namespace MangaReader.Interfaces.Parsers
 {
     public interface ICatalogParser
     {
-        void GetCatalogAsync(ObservableCollection<ICatalogTile> collection);
+        void GetCatalogAsync(ObservableCollection<ICatalogTile> collection, int offSet = 0);
     }
 }
