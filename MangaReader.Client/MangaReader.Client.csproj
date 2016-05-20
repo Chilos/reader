@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behavior\ScrollViewerBehavior.cs" />
     <Compile Include="Controls\CatalogTileControl.xaml.cs">
       <DependentUpon>CatalogTileControl.xaml</DependentUpon>
     </Compile>
@@ -105,6 +106,7 @@
     <Compile Include="Converters\VisibleConverter.cs" />
     <Compile Include="Navigate\INavigationService.cs" />
     <Compile Include="Navigate\NavigationService.cs" />
+    <Compile Include="ViewModel\AboutMangaPageViewModel.cs" />
     <Compile Include="ViewModel\CatalogPageViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -112,6 +114,9 @@
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Pages\AboutMangaPageView.xaml.cs">
+      <DependentUpon>AboutMangaPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\CatalogPageView.xaml.cs">
       <DependentUpon>CatalogPageView.xaml</DependentUpon>
     </Compile>
@@ -143,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\AboutMangaPageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

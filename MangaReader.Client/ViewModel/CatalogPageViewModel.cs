@@ -11,6 +11,7 @@ using MangaReader.Client.Navigate;
 using MangaReader.Interfaces.Entity;
 using MangachanParser.Entity;
 using MangachanParser.Parser;
+using MangaReader.Client.View.Pages;
 
 namespace MangaReader.Client.ViewModel
 {
@@ -18,8 +19,10 @@ namespace MangaReader.Client.ViewModel
     {
         private readonly INavigationService _navigationService;
         private ICommand _onLoadCommand;
+        private ICommand _onScrollCommand;
         private bool _processingRingVisible;
         private RelayCommand<ICatalogTile> _showMangaInfo;
+        CatalogParser<CatalogTile> _parser = new CatalogParser<CatalogTile>();
         public ObservableCollection<ICatalogTile> Tiles { get; set; }
 
         public CatalogPageViewModel(INavigationService navigationService)
@@ -47,12 +50,24 @@ namespace MangaReader.Client.ViewModel
                 return _onLoadCommand ?? (_onLoadCommand = new RelayCommand(() =>
                 {
 
-                    var parser = new CatalogParser<CatalogTile>();
+                    
                     if (Tiles.Count != 0)
                         return;
                     ProcessingRingVisible = true;
                     Tiles.CollectionChanged += Tiles_CollectionChanged;
-                    parser.GetCatalogAsync(Tiles);
+                    _parser.GetCatalogAsync(Tiles);
+                }));
+            }
+        }
+
+        public ICommand OnScrollCommand
+        {
+            get
+            {
+                return _onScrollCommand ?? (_onScrollCommand = new RelayCommand(() =>
+                {
+                    ProcessingRingVisible = true;
+                    _parser.GetCatalogAsync(Tiles, Tiles.Count);
                 }));
             }
         }
@@ -68,7 +83,7 @@ namespace MangaReader.Client.ViewModel
             {
                 return _showMangaInfo ?? (_showMangaInfo = new RelayCommand<ICatalogTile>(o =>
                 {
-                    //_navigationService.Navigate(typeof(Page2), o);
+                    _navigationService.Navigate(typeof(AboutMangaPageView), o);
 
                 }));
             }

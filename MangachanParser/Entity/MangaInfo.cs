@@ -9,7 +9,7 @@ using MangaReader.Interfaces.Entity;
 
 namespace MangachanParser.Entity
 {
-    public class CatalogTile : ICatalogTile
+    public class MangaInfo : IMangaInfo
     {
         public ImageSource Image { get; set; }
         public string EnName { get; set; }
@@ -17,9 +17,11 @@ namespace MangachanParser.Entity
         public string Description { get; set; }
         public string Status { get; set; }
         public ObservableCollection<ITag> Tags { get; set; }
-        public string UrlToInfo { get; set; }
-        public string ChapterCount { get; set; }
-        public bool IsEnded { get; set; }
-        public bool IsSingle { get; set; }
+        public string AnotherNames { get; set; }
+        public string Author { get; set; }
+        public string DownloadingStatus { get; set; }
+        public string Translater { get; set; }
+        public string ReadUrl { get; set; }
+        public ObservableCollection<IChapter> Chapters { get; set; }
     }
 }

@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:MangaReader.Client.Controls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:sroll="using:MangaReader.Client.Behavior"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:converters="using:MangaReader.Client.Converters"
     DataContext="{Binding CatalogPage, Source={StaticResource Locator}}"
@@ -33,7 +34,11 @@
                     TranslateY="{Binding ElementName=MainScrollViewer, Path=VerticalOffset, Converter={StaticResource Parallax}, ConverterParameter=-0.10}" />
             </Image.RenderTransform>
         </Image>
-        <ScrollViewer x:Name="MainScrollViewer" VerticalScrollMode="Enabled" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer x:Name="MainScrollViewer" VerticalScrollMode="Enabled"
+                      HorizontalScrollBarVisibility="Disabled">
+            <interactivity:Interaction.Behaviors>
+                <sroll:ScrollViewerBehavior Command="{Binding OnScrollCommand}"/>
+            </interactivity:Interaction.Behaviors>
             <ListView ItemsSource="{Binding Tiles, Mode=TwoWay}"
                   x:Name="ListView"
                   SelectionMode="None">
