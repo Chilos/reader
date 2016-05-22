@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -21,15 +16,17 @@ namespace MangaReader.Client.ViewModel
         private ICommand _onLoadCommand;
         private ICommand _onScrollCommand;
         private bool _processingRingVisible;
+        private double _verticalOffset;
+        private double _holdVerticalOffset;
         private RelayCommand<ICatalogTile> _showMangaInfo;
-        CatalogParser<CatalogTile> _parser = new CatalogParser<CatalogTile>();
+        readonly CatalogParser<CatalogTile> _parser;
         public ObservableCollection<ICatalogTile> Tiles { get; set; }
 
         public CatalogPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             Tiles = new ObservableCollection<ICatalogTile>();
-
+            _parser = new CatalogParser<CatalogTile>();
 
         }
 
@@ -43,6 +40,16 @@ namespace MangaReader.Client.ViewModel
             }
         }
 
+        public double VerticalOffset
+        {
+            get { return _verticalOffset; }
+            set
+            {
+                _verticalOffset = value;
+                RaisePropertyChanged(() => VerticalOffset);
+            }
+        }
+
         public ICommand OnLoadCommand
         {
             get
@@ -50,9 +57,13 @@ namespace MangaReader.Client.ViewModel
                 return _onLoadCommand ?? (_onLoadCommand = new RelayCommand(() =>
                 {
 
-                    
+
                     if (Tiles.Count != 0)
+                    {
+                        VerticalOffset = 0;
+                        VerticalOffset = _holdVerticalOffset;
                         return;
+                    }
                     ProcessingRingVisible = true;
                     Tiles.CollectionChanged += Tiles_CollectionChanged;
                     _parser.GetCatalogAsync(Tiles);
@@ -83,6 +94,7 @@ namespace MangaReader.Client.ViewModel
             {
                 return _showMangaInfo ?? (_showMangaInfo = new RelayCommand<ICatalogTile>(o =>
                 {
+                    _holdVerticalOffset = VerticalOffset;
                     _navigationService.Navigate(typeof(AboutMangaPageView), o);
 
                 }));

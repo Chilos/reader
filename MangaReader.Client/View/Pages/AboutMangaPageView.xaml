@@ -257,11 +257,11 @@
                                    Text="{Binding PagesInfo.Description, Mode=TwoWay}" />
                     </Grid>
                 </RelativePanel>
-                <Grid Margin="50,20,50,0">
+                <Grid Margin="50,20,50,20">
                     <Border Background="Black"
                                 Opacity=".5">
                     </Border>
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,20">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>

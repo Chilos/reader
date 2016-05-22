@@ -37,7 +37,8 @@
         <ScrollViewer x:Name="MainScrollViewer" VerticalScrollMode="Enabled"
                       HorizontalScrollBarVisibility="Disabled">
             <interactivity:Interaction.Behaviors>
-                <sroll:ScrollViewerBehavior Command="{Binding OnScrollCommand}"/>
+                <sroll:ScrollViewerBehavior Command="{Binding OnScrollCommand}"
+                                            VerticalOffset="{Binding VerticalOffset, Mode=TwoWay}"/>
             </interactivity:Interaction.Behaviors>
             <ListView ItemsSource="{Binding Tiles, Mode=TwoWay}"
                   x:Name="ListView"

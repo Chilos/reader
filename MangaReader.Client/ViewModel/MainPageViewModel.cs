@@ -157,12 +157,12 @@ namespace MangaReader.Client.ViewModel
                     //    HeaderText = "Page 1";
                     //    BtnAnotherChecked = true;
                     //}
-                    //if (FrameContent is Page2)
-                    //{
-                    //    HeaderText = "Page 2";
-                    //    BtnCatalogChecked = true;
-                    //    GoBackVisible = true;
-                    //}
+                    if (FrameContent is AboutMangaPageView)
+                    {
+                        HeaderText = "Каталог";
+                        BtnCatalogChecked = true;
+                        GoBackVisible = true;
+                    }
                     //if (FrameContent is Page3)
                     //{
                     //    HeaderText = "Page 3";
