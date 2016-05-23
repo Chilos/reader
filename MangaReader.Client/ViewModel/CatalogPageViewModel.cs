@@ -71,14 +71,20 @@ namespace MangaReader.Client.ViewModel
             }
         }
 
+        private int _listCount = 20;
+
         public ICommand OnScrollCommand
         {
             get
             {
                 return _onScrollCommand ?? (_onScrollCommand = new RelayCommand(() =>
                 {
-                    ProcessingRingVisible = true;
-                    _parser.GetCatalogAsync(Tiles, Tiles.Count);
+                    if (_listCount == Tiles.Count)
+                    {
+                        ProcessingRingVisible = true;
+                        _parser.GetCatalogAsync(Tiles, Tiles.Count);
+                        _listCount += 20;
+                    }
                 }));
             }
         }
