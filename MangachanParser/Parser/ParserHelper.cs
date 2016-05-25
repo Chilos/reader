@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Windows.Foundation;
 using Windows.UI.Xaml.Controls;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
+using HttpClient = System.Net.Http.HttpClient;
 using HttpMethod = Windows.Web.Http.HttpMethod;
 using HttpRequestMessage = Windows.Web.Http.HttpRequestMessage;
 
@@ -17,7 +19,7 @@ namespace MangachanParser.Parser
     public class ParserHelper
     {
         private readonly WebView _wv;
-
+        
         public ParserHelper()
         {
             _wv = new WebView();
@@ -35,7 +37,8 @@ namespace MangachanParser.Parser
             return _content;
         }
 
-        public async Task<bool> Login(string login, string password)
+
+        public async Task<string> Login(string login, string password)
         {
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post,
                 new Uri("http://mangachan.ru/"))
@@ -50,10 +53,12 @@ namespace MangachanParser.Parser
                 _content = await _wv.InvokeScriptAsync("eval",
                     new[] { "document.documentElement.outerHTML;" });
             }
-            return !IsLogout(_content);
+            if (IsLogout(_content))
+                return null;
+            return _content;
         }
 
-        private bool IsLogout(string htmlStatus)
+        public bool IsLogout(string htmlStatus)
         {
             string patrn = @"<form action="""" method=""post"">";
             RegexOptions options = RegexOptions.Compiled | RegexOptions.Singleline;

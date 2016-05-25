@@ -18,12 +18,14 @@ namespace MangaReader.Client.ViewModel
         private ICommand _page1Click;
         private ICommand _hamburgerCommand;
         private ICommand _onLoaded;
+        private ICommand _loginCommand;
         private ICommand _onFrameNavigatedCommand;
         private ICommand _goBack;
         private bool _isOpenPanel;
         private double _isLeftPanelVisible;
         private bool _isTopPanelVisible;
         private bool _btnCatalogChecked;
+        private bool _btnLoginChecked;
         private bool _btnAnotherChecked;
         private string _headerText;
         private bool _goBackVisible;
@@ -90,6 +92,16 @@ namespace MangaReader.Client.ViewModel
             }
         }
 
+        public bool BtnLoginChecked
+        {
+            get { return _btnLoginChecked; }
+            set
+            {
+                _btnLoginChecked = value;
+                RaisePropertyChanged(() => BtnLoginChecked);
+            }
+        }
+
         public bool BtnAnotherChecked
         {
             get { return _btnAnotherChecked; }
@@ -152,6 +164,12 @@ namespace MangaReader.Client.ViewModel
                         BtnCatalogChecked = true;
                     }
 
+                    if (FrameContent is LoginPageView)
+                    {
+                        HeaderText = "Вход";
+                        BtnLoginChecked = true;
+                        GoBackVisible = true;
+                    }
                     //if (FrameContent is Page1)
                     //{
                     //    HeaderText = "Page 1";
@@ -182,6 +200,18 @@ namespace MangaReader.Client.ViewModel
                 return _catalogClick ?? (_catalogClick = new RelayCommand(() =>
                 {
                     _navigationService.Navigate(typeof(CatalogPageView));
+                    ChangeGoBackVisible();
+                }));
+            }
+        }
+
+        public ICommand LoginClick
+        {
+            get
+            {
+                return _loginCommand ?? (_loginCommand = new RelayCommand(() =>
+                {
+                    _navigationService.Navigate(typeof(LoginPageView));
                     ChangeGoBackVisible();
                 }));
             }

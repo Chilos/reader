@@ -108,6 +108,7 @@
     <Compile Include="Navigate\NavigationService.cs" />
     <Compile Include="ViewModel\AboutMangaPageViewModel.cs" />
     <Compile Include="ViewModel\CatalogPageViewModel.cs" />
+    <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\MainPageView.xaml.cs">
@@ -119,6 +120,9 @@
     </Compile>
     <Compile Include="View\Pages\CatalogPageView.xaml.cs">
       <DependentUpon>CatalogPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\LoginPageView.xaml.cs">
+      <DependentUpon>LoginPageView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +160,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\CatalogPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\LoginPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

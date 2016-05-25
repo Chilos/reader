@@ -111,10 +111,12 @@
     <Compile Include="Entity\Chapter.cs" />
     <Compile Include="Entity\MangaInfo.cs" />
     <Compile Include="Entity\Tag.cs" />
+    <Compile Include="Entity\User.cs" />
     <Compile Include="Parser\CatalogParser.cs" />
     <Compile Include="Parser\ContentParser.cs" />
     <Compile Include="Parser\InfoParser.cs" />
     <Compile Include="Parser\ParserHelper.cs" />
+    <Compile Include="Parser\UserParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\MangachanParser.rd.xml" />
   </ItemGroup>

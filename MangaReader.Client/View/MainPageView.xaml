@@ -41,6 +41,17 @@
             <SplitView.Pane>
                 <StackPanel>
                     <RadioButton Style="{StaticResource MenuStyle}"
+                                 Tag="&#xE77B;"
+                                 Content="Войти"
+                                 Width="250"
+                                 IsChecked="{Binding BtnLoginChecked, Mode=TwoWay}">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Checked">
+                                <core:InvokeCommandAction Command="{Binding LoginClick}"/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource MenuStyle}"
                                  Tag="&#xE909;"
                                  Content="Каталог"
                                  Width="250"
